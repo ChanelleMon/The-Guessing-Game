@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8">
+	<title> The Guessing Game </title>
+	<link rel= "stylesheet" type="text/css" href="mystyles.css">
+	<script type="text/javascript">
+		//<![CDATA[
+		
+			var ans = Math.floor(Math.random() * 10 + 1);
+			var i= 1;
+			var id_setInterval;
+			var text;
+			var messageStyle;
+			
+			function flash() {
+				text = document.getElementById('game_title');
+			
+				if(i==1){
+					text.style.color = "#993366";
+					i++;
+				}
+				else{
+					text.style.color = "#cc3399";
+					i--;
+				}
+			}
+			id_setInterval = setInterval(flash, 1000);
+
+			function cold_text(){
+				
+				text = document.getElementById('game_title');
+			
+				if(i==1){
+					text.style.color = "#99ccff";
+					i++;
+				}
+				else{
+					text.style.color = "#ccccff";
+					i--;
+				}
+			}
+			
+			function warm_text(){
+				
+				text = document.getElementById('game_title');
+			
+				if(i==1){
+					text.style.color = "#ff0000";
+					i++;
+				}
+				else{
+					text.style.color = "#ff6600";
+					i--;
+				}
+			}
+			
+			function correct_text(){
+				
+				text = document.getElementById('game_title');
+				text.style.color = "#ff9900";
+			}
+			
+			function check_guess(){
+				var guess;
+					guess = prompt("Enter a number: ");
+				
+				if(guess==ans){
+					alert("Congrats, you guessed correct! The correct answer is " + ans);
+					clearTimeout(id_setInterval);
+					correct_text();
+					var win_bg = document.getElementById('box');
+					win_bg.style.backgroundImage = "url('bg3.png')";
+					var display_img = document.getElementById('img1');
+					display_img.style.display = "inline";
+					display_img.style.float = "center";
+					document.getElementById("message").innerHTML= "";
+					document.getElementById("winner").innerHTML= "Congrats, you are a winner!";
+					
+				}
+				else if((ans - guess)> 2 || (ans - guess)< -2 ){
+					alert("Sorry, you are cold! Please try again.");
+					var cold_bg = document.getElementById('box');
+					document.getElementById("message").innerHTML= "BRR! It's getting getting a little cold in here...";
+					cold_bg.style.backgroundImage = "url('bg2.jpg')";
+					cold_bg.style.backgroundRepeat = "no-repeat";
+					cold_bg.style.backgroundSize = "cover";
+					messageStyle=document.getElementById('message');
+					messageStyle.style.color = "#6666ff";
+					messageStyle.style.fontSize = "smaller";
+					clearTimeout(id_setInterval);
+					id_setInterval = setInterval("cold_text()",1500);
+					
+				}
+				else if((ans -guess)< 3 || (ans - guess)> -3){
+					alert("Sorry, incorrrect but you are warm! Please try again.");
+					var warmBG = document.getElementById('box');
+					warmBG.style.backgroundImage = "url('bg1.jpg')";
+					document.getElementById('message').innerHTML= "THINGS ARE WARMING UP!!";
+					messageStyle=document.getElementById('message');
+					messageStyle.style.color = "red";
+					messageStyle.style.fontWeight = "bold";
+					messageStyle.style.fontSize = "larger";
+					clearTimeout(id_setInterval);
+					id_setInterval = setInterval("warm_text()",400);
+				}
+
+			}
+		//]]>
+	</script>
+	</head>
+	<body id="box">
+		<h1 id="game_title">The Guessing Game!</h1>
+		<p>	
+		The purpose of this game is to see if you can guess the correct number between 1 and 10 inclusively. If you do, you WIN!<br/><br/>
+		If not, you press the button again and enter another number until you guess correctly.<br/><br/>
+		Good luck!<br/><br/>
+		
+		<input type="button" value="Guess" onClick="check_guess()"> <br/><br/>
+		<img id="img1" src="img1.gif" alt="Win" style="width:420px;height:420px;">
+		</p>
+		
+		<p id="winner"></p>
+		<p id="message">See if you can find the right answer </p> <br/> <br/>
+		
+		
+	</body>
+</html>

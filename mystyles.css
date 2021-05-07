@@ -1,0 +1,29 @@
+#box{
+	background-image:url('bg4.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+#img1{
+	display: none;
+}
+
+#game_title{
+	text-align:center;
+	border-top-style: dotted;
+    border-right-style: solid;
+    border-bottom-style: dotted;
+    border-left-style: solid;
+}
+
+p{
+	text-align:center;
+}
+
+#winner{
+	text-align:center;
+	font-size: 30px;
+	color: white;
+	font-family: Bradley Hand, cursive;
+}
+
